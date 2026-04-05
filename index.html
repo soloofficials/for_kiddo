@@ -1,272 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>When are you gonna send?</title>
-    <link rel="stylesheet" href="style.css">
-
-    
+    <title>Hidden Track for You Kiddo</title>
     <style>
+        :root {
+            --spotify-green: #1DB954;
+            --bg-black: #121212;
+            --card-grey: #181818;
+        }
 
-        @import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@1,300&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+        body {
+            background-color: var(--bg-black);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
-        *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Bellota Text', sans-serif;
-    
-}
-body, html{
-    width: 100%;
-    height: 100vh;
-    background-image: url("https://t3.ftcdn.net/jpg/03/95/00/10/360_F_395001009_kIG3PdUaFiujv6t0Rd0tdjfEghMW2Hrc.jpg");
+        .player-card {
+            background: var(--card-grey);
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
 
-    background-size:cover;
-}
-
-.confirmation{
-    display: none;
-    width: 400px;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    /* padding-top: 50px; */
-}
-
-.confirmation h1{
-    font-style: bolder;
-    font-size: 50px;
-    font-weight: 700;
-    text-shadow: 0px 3px 6px rgb(147, 77, 77);
-    line-height: 90px;
-}
-
-.fix-gif{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height: 200px;
-    
-
-}
-
-.fix-gifimg{
-    border-radius: 10px;
-    width: 384px;
-    height: 216px;
-    background-image: url("https://gifdb.com/images/high/cute-poke-love-couple-0kocsddct79b0tw0.gif");
-    background-size: cover; 
-}
-
-.container h1{
-    margin-bottom: 20px;
-    margin-top: 50px;
-    font-style: bolder;
-    font-size: 50px;
-    font-weight: 700;
-    text-shadow: 0px 3px 6px rgb(147, 77, 77);
-}
-
-#fix{
-    margin-top: 30px;
-        border: none;
-        width: 400px;
-        height: 50px;
-        font-size: 30px;
-        border-radius: 10px;
-        background: none;
-        backdrop-filter: blur(5px);
-        border: 1px solid black;
-        font-weight: 550;
-}
-.container{
-    width: 400px;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    
-}
-
-.gif{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height: 300px;
-    
-
-}
-
-.gifimg{
-    border-radius: 10px;
-    width: 384px;
-    height: 254px;
-    background-image: url("https://i.pinimg.com/originals/8d/d3/ed/8dd3ed839851364b5653440ee4a6a5a9.gif");
-    background-size: cover; 
-}
-
-.answer-box{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    /* background-color: black; */
-    margin-top: 5px;
-    width: 100%;
-    height: 80px;
-    gap: 50px;
-}
-
-.answer{
-    border: none;
-    width: 100px;
-    height: 50px;
-    font-size: 30px;
-    border-radius: 10px;
-    background: none;
-    backdrop-filter: blur(5px);
-    border: 1px solid black;
-    font-weight: 550;
-    
-}
-.answer:hover{
-    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.449);
-}
-
-@media screen and (max-width: 600px){
-    .container{
-        width: 100%;
-    }
-    .container h1{
-        margin-top: 20px;
-        padding: 8px;
-        font-size: 35px;
-    }
-    .answer{
-        font-size: 20px;
-        padding: 5px;
-    }
-    .gifimg{
-        border-radius: 10px;
-        width: 300px;
-        height: 198px;
-        background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
-        background-size: cover; 
-    }
-    .fix-gif{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width:100%;
-        height: 200px;
-        
-    
-    }
-    
-    .fix-gifimg{
-        border-radius: 10px;
-        width: 300px;
-        height: 168px;
-        background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
-        background-size: cover; 
-    }
-
-    #fix{
-        margin-top: 30px;
-            border: none;
-            width: 250px;
-            height: 50px;
-            font-size: 30px;
+        .album-art {
+            width: 260px;
+            height: 260px;
+            background: linear-gradient(45deg, #1db954, #191414);
+            margin: 0 auto 20px;
             border-radius: 10px;
-            background: none;
-            backdrop-filter: blur(5px);
-            border: 1px solid black;
-            font-weight: 550;
-    }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
 
-    .confirmation{
-        display: none;
-        width: 100%;
-        height: 500px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        text-align: center;
-    }
-}
+        .track-info h2 {
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
 
-    
-    </style>
+        .track-info p {
+            color: #b3b3b3;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .play-btn {
+            background: var(--spotify-green);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: scale 0.2s;
+        }
+
+        .play-btn:hover {
+            scale: 1.1;
+        }
+
+        /* Hidden Surprise Section */
+        #surprise {
+            display: none;
+            position: absolute;
+            text-align: center;
+            animation: fadeIn 1s forwards;
+        }
+
+        .heart {
+            color: #ff4b2b;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .insta-btn {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="question">
-            <h1>Hey Kid are you gonna send me your pics or not?</h1>
+
+    <div class="player-card" id="player">
+        <div class="album-art">🎵</div>
+        <div class="track-info">
+            <h2 id="title">Secret Track.mp3</h2>
+            <p id="artist">Artist: Unknown</p>
         </div>
-        <div class="gif">
-            <div class="gifimg"></div>
+        <div class="controls">
+            <button class="play-btn" onclick="revealSurprise()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+            </button>
         </div>
-        <div class="answer-box">
-                <button class="answer" id="yes">Yes!!!</button>
-                <button class="answer" id="no">No</button>
-        </div>
-        
     </div>
 
-    <div class="confirmation">
-        <h1>Great Click there and send me !!!!</h1>
-            <div class="question">
-                <div class="fix-gif">
-                    <div class="fix-gifimg"></div>
-                </div>
-                    <button class="answer" id="fix">Send here kid</button>
-                
-            </div>
-    </div>
-
+    <div id="surprise">
+        <div class="heart">❤️</div>
+        <h1>It's actually a message for you!</h1>
+        <p>I was wondering if you'd like to send me some kissses 💋</p>
+        <a href="https://instagram.com/ab_html" class="insta-btn">Send on Insta</a>
     </div>
 
     <script>
-        const yes = document.querySelector("#yes");
-const no = document.querySelector("#no");
-const confirmation = document.querySelector(".confirmation");
-const container = document.querySelector(".container");
+        function revealSurprise() {
+            // Animation for the player card
+            const player = document.getElementById('player');
+            const surprise = document.getElementById('surprise');
 
-yesAnswerMethod = () => {
-    container.style.display = 'none'
-    confirmation.style.display = 'block'
-}
+            player.style.transform = 'scale(0) rotate(180deg)';
+            player.style.opacity = '0';
 
-noAnswerMethod = () => {
-    no.style.position = 'absolute'
-
-    xPosition = Math.floor(Math.random() * container.clientWidth)
-    yPosition = Math.floor(Math.random() * container.clientHeight)
-
-    no.style.top = `${yPosition}px`
-    no.style.left = `${xPosition}px`
-
-}
-
-no.addEventListener('click', noAnswerMethod)
-yes.addEventListener('click', yesAnswerMethod)
-
-document.getElementById("fix").addEventListener("click", function(){
-    window.location= "https://www.instagram.com/direct/t/ab_html/";
-}, false);
+            setTimeout(() => {
+                player.style.display = 'none';
+                surprise.style.display = 'block';
+                document.body.style.background = '#000';
+            }, 500);
+        }
     </script>
-    
 </body>
+
 </html>
